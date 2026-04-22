@@ -19,22 +19,22 @@ def home():
 def get_messages():
     day = datetime.now().strftime('%A').lower()
     
-    # Lógica de mensajes según el día
+    # Mensajes personalizados con Emojis
     if day == 'wednesday': # Miércoles
-        adultos = "🟢 *MENSAJE CÉLULAS:* ¡Hola familia! Hoy es miércoles de célula. Recordemos: '¡Qué bueno y qué agradable es cuando los hermanos conviven en armonía!' (Salmo 133:1). ¡Los espero hoy!"
-        joven = "🔥 *MENSAJE JUVENIL:* ¡Equipo! Hoy es día de célula, nuestro momento de conectar y recargar pilas. 'Considerémonos unos a otros para estimularnos al amor y a las buenas obras' (Hebreos 10:24). ¡No faltes!"
+        adultos = "🟢 *MENSAJE CÉLULAS:* \n\n¡Hola familia! 👋 Hoy es nuestro miércoles de célula. Un tiempo especial para crecer juntos. Recuerden: *'¡Qué bueno y qué agradable es cuando los hermanos conviven en armonía!'* (Salmo 133:1). ¡Los espero hoy con expectativas! 🙌✨"
+        joven = "🔥 *MENSAJE JUVENIL:* \n\n¡Ey, equipo! 🚀 ¡Hoy es día de célula! Es el momento perfecto para conectar, reír y recargar pilas con amigos. *'Considerémonos unos a otros para estimularnos al amor y a las buenas obras'* (Hebreos 10:24). ¡Va a estar brutal, no faltes! ⚡💪"
     elif day == 'tuesday': # Martes
-        adultos = "🟢 *MENSAJE:* ¡Hoy es martes de Fe y Milagros! Expectantes por lo que Dios hará. (Salmo 62:5)."
-        joven = "🔥 *MENSAJE JUVENIL:* ¡Martes de milagros! Vayamos con audacia. (2 Timoteo 1:7)."
+        adultos = "🟢 *MENSAJE:* \n\n¡Feliz martes de Fe y Milagros! 🙏✨ Vayamos expectantes por lo que Dios hará hoy. *'Solo en Dios halla descanso mi alma'* (Salmo 62:5). ¡Nos vemos en el culto! ⛪🔥"
+        joven = "🔥 *MENSAJE JUVENIL:* \n\n¡Martes de milagros! ⚡ No te muevas por miedo, muévete por fe. *'Porque no nos ha dado Dios un espíritu de cobardía, sino de poder'* (2 Timoteo 1:7). ¡Sé audaz hoy! 😎🙌"
     elif day == 'saturday': # Sábado
-        adultos = "🟢 *MENSAJE:* ¡Sábado de servicio y amor al prójimo!"
-        joven = "🚀 *ARENA JOVEN:* ¡Hoy es Ignite! Fuego, visión y pasión a las 5:00 PM. ¡Te esperamos!"
+        adultos = "🟢 *MENSAJE:* \n\n¡Feliz sábado! ☀️ Un día para servir y amar al prójimo. Que Su luz brille a través de cada uno de nosotros hoy. 🤝❤️"
+        joven = "🚀 *ARENA JOVEN:* \n\n¡Fuego, visión y pasión! 🔥 Hoy es *Ignite* a las 5:00 PM. ¡Prepárate para lo que Dios quiere encender en ti! ⚡💣 ¡Te esperamos!"
     elif day == 'sunday': # Domingo
-        adultos = "🟢 *CULTO FAMILIAR:* Hoy domingo a las 10:00 AM, unidad y amor en casa. (Josué 24:15)."
-        joven = "🔥 *DOMINGO:* ¡Hoy culto de familia! Identidad y honra. ¡Nos vemos!"
+        adultos = "🟢 *CULTO FAMILIAR:* \n\n¡Feliz domingo! 👨‍👩‍👧‍👦 Nos vemos a las 10:00 AM para honrar al Señor en unidad. *'Yo y mi casa serviremos al Señor'* (Josué 24:15). ¡Bendiciones! 🙌⛪"
+        joven = "🔥 *DOMINGO:* \n\n¡Hoy culto de familia! ⛪ Identidad, honra y propósito. ¡No te pierdas lo que Dios tiene para los jóvenes hoy! 🚀🙌✨"
     else: # Días libres
-        adultos = "🟢 *MENSAJE:* ¡Feliz día! Que la paz de Dios guarde sus corazones. (Filipenses 4:7)."
-        joven = "🔥 *MENSAJE:* ¡A darle con todo hoy! Dios tiene algo grande para tu vida. (Jeremías 29:11)."
+        adultos = "🟢 *MENSAJE:* \n\n¡Bendecido día! 🌟 Que Su paz, que sobrepasa todo entendimiento, guarde hoy sus corazones. (Filipenses 4:7). ¡Ánimo en todo lo que emprendas! 🌿💪"
+        joven = "🔥 *MENSAJE:* \n\n¡Vamos a darle con todo hoy! ⚡ Dios tiene un plan grande para tu vida. *'Porque yo sé muy bien los planes que tengo para ustedes'* (Jeremías 29:11). ¡A brillar! 😎🚀💫"
         
     return adultos, joven
 
@@ -44,12 +44,12 @@ async def enviar_mensajes():
     await bot.send_message(chat_id=CHAT_ID, text=msg_j, parse_mode='Markdown')
 
 def run_scheduler():
-    # Enviar mensaje inmediato de prueba
+    # Mensaje de prueba inmediato al arrancar
     asyncio.run(enviar_mensajes())
     
-    # Programar envíos
+    # Programación diaria
     schedule.every().day.at("08:00").do(lambda: asyncio.run(enviar_mensajes()))
-    schedule.every().day.at("10:30").do(lambda: asyncio.run(enviar_mensajes()))
+    schedule.every().day.at("15:00").do(lambda: asyncio.run(enviar_mensajes()))
     
     while True:
         schedule.run_pending()
