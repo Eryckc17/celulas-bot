@@ -49,7 +49,7 @@ def run_scheduler():
     
     # Programar envíos
     schedule.every().day.at("08:00").do(lambda: asyncio.run(enviar_mensajes()))
-    schedule.every().day.at("15:00").do(lambda: asyncio.run(enviar_mensajes()))
+    schedule.every().day.at("10:30").do(lambda: asyncio.run(enviar_mensajes()))
     
     while True:
         schedule.run_pending()
